@@ -6,7 +6,7 @@
    "dynamic_config" : 0,
    "generated_by" : "ExtUtils::MakeMaker version 6.66, CPAN::Meta::Converter version 2.120921",
    "license" : [
-      "perl_5"
+      "artistic_2"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
@@ -22,7 +22,7 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Test::More" : "0.90"
+            "Test::More" : "0.88"
          }
       },
       "configure" : {
@@ -32,22 +32,19 @@
       },
       "runtime" : {
          "requires" : {
-            "Mojolicious" : "4.30"
+            "Mojolicious" : "5.00"
          }
       }
    },
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-mojopaste"
+         "web" : "https://github.com/jhthorsen/app-mojopaste/issues"
       },
-      "homepage" : "http://p.thorsen.pm",
-      "license" : [
-         "http://dev.perl.org/licenses/"
-      ],
+      "homepage" : "https://github.com/jhthorsen/app-mojopaste",
       "repository" : {
-         "url" : "https://github.com/jhthorsen/app-mojopaste"
+         "url" : "https://github.com/jhthorsen/app-mojopaste.git"
       }
    },
-   "version" : "0.0501"
+   "version" : "0.06"
 }
