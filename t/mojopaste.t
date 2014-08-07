@@ -16,17 +16,12 @@ plan skip_all => "$ENV{PASTE_DIR} was not created" unless -d $ENV{PASTE_DIR};
 {
   $t->get_ok('/')
     ->status_is(200)
-    ->element_exists('form[method="post"][action="/"]')
-    ->element_exists('a.button')
+    ->element_exists('form[method="post"][action="invalid"]', 'javascript is required')
+    ->element_exists('button')
     ->element_exists('a[href="https://metacpan.org/release/App-mojopaste"]')
-    ->element_exists_not('button')
     ;
 
-  $t->post_ok('/', form => {})->status_is(500);
-  $t->post_ok('/', form => { p => 1 })
-    ->status_is(400)
-    ->element_exists('form[method="post"][action="/"]')
-    ;
+  $t->post_ok('/')->status_is(400)->element_exists('form[method="post"][action="invalid"]');
 
   $t->post_ok('/', form => { content => $content, p => 1 })
     ->status_is(302)
@@ -40,13 +35,13 @@ plan skip_all => "$ENV{PASTE_DIR} was not created" unless -d $ENV{PASTE_DIR};
   $t->get_ok($t->tx->res->headers->location)
     ->status_is(200)
     ->element_exists(qq(a[href="/"]))
-    ->element_exists(qq(a[href="/$files[0]?raw=1"]))
+    ->element_exists(qq(a[href="/$files[0].txt"]))
     ->element_exists(qq(a[href="/?edit=$files[0]"]))
     ->element_exists('pre')
     ->text_is('pre', $content)
     ;
 
-  $t->get_ok("/$files[0]?raw=1")->content_is($content);
+  $t->get_ok("/$files[0].txt")->content_is($content);
   $content =~ s/\n$//;
   $t->get_ok("/?edit=$files[0]")->text_is('textarea', "$content\n");
 
